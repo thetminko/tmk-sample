@@ -14,6 +14,9 @@
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "skipLibCheck": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "strictBindCallApply": true,
     "strict": true,
     "target": "es2022",
     "customConditions": ["development"]

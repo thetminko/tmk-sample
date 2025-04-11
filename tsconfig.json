@@ -8,6 +8,30 @@
     },
     {
       "path": "./apps/api"
+    },
+    {
+      "path": "./libs/core/shared"
+    },
+    {
+      "path": "./libs/core/backend"
+    },
+    {
+      "path": "./libs/app/backend"
+    },
+    {
+      "path": "./apps/sample-web"
+    },
+    {
+      "path": "./apps/web"
+    },
+    {
+      "path": "./libs/core/web"
+    },
+    {
+      "path": "./libs/app/web"
+    },
+    {
+      "path": "./libs/app/shared"
     }
   ]
 }
