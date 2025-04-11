@@ -20,5 +20,12 @@
     "eslint.config.cjs",
     "eslint.config.mjs"
   ],
-  "references": []
+  "references": [
+    {
+      "path": "../../libs/app/backend/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/core/backend/tsconfig.lib.json"
+    }
+  ]
 }

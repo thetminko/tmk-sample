@@ -11,4 +11,7 @@
   "eslint.rules.customizations": [
     { "rule": "prettier/*", "severity": "off", "fixable": true }
   ],
+  "cSpell.words": [
+    "uuidv"
+  ],
 }

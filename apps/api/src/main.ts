@@ -1,18 +1,28 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
-
+import { createNestApp } from '@core/backend';
+import { ApiModule } from './api/api.module';
+import { EnvService } from '@app/backend';
+import cookieParser from 'cookie-parser';
 import { Logger } from '@nestjs/common';
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app/app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  const globalPrefix = 'api';
-  app.setGlobalPrefix(globalPrefix);
-  const port = process.env.PORT || 12000;
+  const { app, globalPrefix } = await createNestApp({
+    appModule: ApiModule
+  });
+
+  const envService = app.get(EnvService);
+  const port = envService.get('API_PORT');
+  const env = envService.get('ENVIRONMENT');
+
+  app.use(cookieParser());
+
+  if (env === 'development') {
+    // setup swagger
+  }
+
   await app.listen(port);
+
+  Logger.log(`Instance type: ${envService.get('INSTANCE_TYPE')}`);
+  Logger.log(`Running environment: ${env}`);
   Logger.log(`🚀 Application is running on: http://localhost:${port}/${globalPrefix}`);
 }
 
