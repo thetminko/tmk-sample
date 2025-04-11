@@ -7,11 +7,11 @@ export default defineConfig(() => ({
   cacheDir: '../../node_modules/.vite/apps/web',
   server: {
     port: 11000,
-    host: 'localhost',
+    host: 'localhost'
   },
   preview: {
     port: 11001,
-    host: 'localhost',
+    host: 'localhost'
   },
   plugins: [react()],
   // Uncomment this if you are using workers.
@@ -23,8 +23,8 @@ export default defineConfig(() => ({
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {
-      transformMixedEsModules: true,
-    },
+      transformMixedEsModules: true
+    }
   },
   test: {
     watch: false,
@@ -34,7 +34,7 @@ export default defineConfig(() => ({
     reporters: ['default'],
     coverage: {
       reportsDirectory: './test-output/vitest/coverage',
-      provider: 'v8' as const,
-    },
-  },
+      provider: 'v8' as const
+    }
+  }
 }));

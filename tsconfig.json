@@ -19,9 +19,6 @@
       "path": "./libs/app/backend"
     },
     {
-      "path": "./apps/sample-web"
-    },
-    {
       "path": "./apps/web"
     },
     {

@@ -18,6 +18,14 @@
     "tags": [
       "scope:core",
       "type:web"
-    ]
+    ],
+    "targets": {
+      "lint:fix": {
+        "executor": "@nx/eslint:lint",
+        "options": {
+          "fix": true
+        }
+      }
+    }
   }
 }
