@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { imports, controllers, exportedProviders } from './api.const.js';
+import { imports, controllers, exportedProviders } from './api.const';
 
 @Module({
   imports,
