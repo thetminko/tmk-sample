@@ -34,12 +34,34 @@
           "stripLeadingPaths": true
         }
       },
-      "targets": {
-        "lint:fix": {
-          "executor": "@nx/eslint:lint",
-          "options": {
-            "fix": true
-          }
+      "lint:fix": {
+        "executor": "@nx/eslint:lint",
+        "options": {
+          "fix": true
+        }
+      },
+      "prisma": {
+        "command": "prisma",
+        "options": {
+          "cwd": "libs/app/backend"
+        }
+      },
+      "prisma:push": {
+        "command": "prisma db push",
+        "options": {
+          "cwd": "libs/app/backend"
+        }
+      },
+      "migrate": {
+        "command": "prisma migrate dev",
+        "options": {
+          "cwd": "libs/app/backend"
+        }
+      },
+      "generate-types": {
+        "command": "prisma generate",
+        "options": {
+          "cwd": "libs/app/backend"
         }
       }
     },
@@ -49,6 +71,12 @@
     ]
   },
   "dependencies": {
-    "@swc/helpers": "~0.5.11"
+    "@swc/helpers": "~0.5.11",
+    "@core/backend": "0.0.1",
+    "@nestjs/common": "^10.0.2",
+    "nestjs-pino": "^4.4.0",
+    "@nestjs/core": "^10.0.2",
+    "zod": "^3.24.2",
+    "@nestjs/config": "^4.0.2"
   }
 }

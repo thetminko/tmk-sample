@@ -2,16 +2,13 @@ import { z } from 'zod';
 
 const validEnvs = ['local', 'development', 'sit', 'staging', 'production'] as const;
 
-const instanceTypes = ['api', 'ws'] as const;
+const instanceTypes = ['api'] as const;
 
 export const envSchema = z.object({
   ENVIRONMENT: z.enum(validEnvs),
   INSTANCE_TYPE: z.enum(instanceTypes),
   API_PORT: z.coerce.number(),
-  DB_HOST: z.string(),
-  DB_PORT: z.coerce.number(),
-  DB_USER: z.string(),
-  DB_PASSWORD: z.string()
+  DATABASE_URL: z.string()
   // REDIS_HOST: z.string(),
   // REDIS_PORT: z.coerce.number(),
   // PROXY_HOST: z.string(),
