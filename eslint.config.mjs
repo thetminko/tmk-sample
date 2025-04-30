@@ -12,7 +12,7 @@ export default [
   security.configs.recommended,
   eslintConfigPrettier,
   {
-    ignores: ['**/dist', '**/build', '**/.react-router', '**/vite.config.*.timestamp*', '**/vitest.config.*.timestamp*']
+    ignores: ['**/dist', '**/build', '**/vite.config.*.timestamp*', '**/vitest.config.*.timestamp*']
   },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
