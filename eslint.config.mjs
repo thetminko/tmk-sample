@@ -2,12 +2,16 @@ import nx from '@nx/eslint-plugin';
 import eslintConfigPrettier from 'eslint-plugin-prettier/recommended';
 import sonar from 'eslint-plugin-sonarjs';
 import security from 'eslint-plugin-security';
+import pluginRouter from '@tanstack/eslint-plugin-router';
+import pluginQuery from '@tanstack/eslint-plugin-query';
 
 export default [
   ...nx.configs['flat/base'],
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
   ...nx.configs['flat/react'],
+  ...pluginRouter.configs['flat/recommended'],
+  ...pluginQuery.configs['flat/recommended'],
   sonar.configs.recommended,
   security.configs.recommended,
   eslintConfigPrettier,
