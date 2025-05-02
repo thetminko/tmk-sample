@@ -7,7 +7,9 @@
     "tsBuildInfoFile": "dist/tsconfig.app.tsbuildinfo",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "target": "es2021"
+    "target": "ESNext",
+    "module": "ES2022",
+    "moduleResolution": "bundler",
   },
   "include": ["src/**/*.ts"],
   "exclude": [
