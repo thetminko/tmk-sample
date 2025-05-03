@@ -1,14 +1,14 @@
 import { createFileRoute, redirect } from '@tanstack/react-router';
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute('/_protected')({
   component: RouteComponent,
   beforeLoad: ({ context }) => {
-    if (context.auth.isAuthenticated) {
-      throw redirect({ to: '/dashboard' });
+    if (!context.auth.isAuthenticated) {
+      throw redirect({ to: '/' });
     }
   }
 });
 
 function RouteComponent() {
-  return <div>Home</div>;
+  return <div>Protected routes</div>;
 }

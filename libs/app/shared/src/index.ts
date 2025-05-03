@@ -1,1 +1,1 @@
-export * from './lib/shared.js';
+export * from './auth/index.js';

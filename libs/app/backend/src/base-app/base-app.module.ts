@@ -4,7 +4,8 @@ import { Module } from '@nestjs/common';
 
 import { LoggerModule } from 'nestjs-pino';
 
-import { Env, EnvModule } from '../env/index.js';
+import type { Env } from '../env/index.js';
+import { EnvModule } from '../env/index.js';
 import { baseAppProviders } from './base-app.provider.js';
 
 @Module({})

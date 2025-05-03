@@ -1,6 +1,6 @@
 import { createFileRoute, redirect } from '@tanstack/react-router';
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute('/login/')({
   component: RouteComponent,
   beforeLoad: ({ context }) => {
     if (context.auth.isAuthenticated) {
@@ -10,5 +10,5 @@ export const Route = createFileRoute('/')({
 });
 
 function RouteComponent() {
-  return <div>Home</div>;
+  return <div>Login Page</div>;
 }

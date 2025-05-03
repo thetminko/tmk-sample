@@ -34,12 +34,10 @@
           "stripLeadingPaths": true
         }
       },
-      "targets": {
-        "lint:fix": {
-          "executor": "@nx/eslint:lint",
-          "options": {
-            "fix": true
-          }
+      "lint:fix": {
+        "executor": "@nx/eslint:lint",
+        "options": {
+          "fix": true
         }
       }
     },
