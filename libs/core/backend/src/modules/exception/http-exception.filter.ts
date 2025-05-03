@@ -1,7 +1,7 @@
-import { ExceptionRes } from '@core/shared';
+import { ExceptionDto } from '@core/shared';
 import type { ArgumentsHost, ExceptionFilter as NestJsExceptionFilter } from '@nestjs/common';
 import { Catch, HttpException } from '@nestjs/common';
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements NestJsExceptionFilter {
@@ -11,6 +11,6 @@ export class HttpExceptionFilter implements NestJsExceptionFilter {
     const request = ctx.getRequest<Request>();
     const status = exception.getStatus();
 
-    response.status(status).json(new ExceptionRes(request.id, status, exception.getResponse(), request.url));
+    response.status(status).json(new ExceptionDto(request.id, status, exception.getResponse(), request.url));
   }
 }

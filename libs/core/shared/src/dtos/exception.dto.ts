@@ -1,4 +1,4 @@
-export class ExceptionRes {
+export class ExceptionDto {
   traceId: string | number | object;
   statusCode: number;
   message: string;
