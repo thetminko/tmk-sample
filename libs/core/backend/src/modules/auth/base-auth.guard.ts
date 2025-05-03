@@ -3,15 +3,16 @@ import type { Nullish, ValueOf } from '@core/shared';
 import { authguardMetadata } from './auth.const.js';
 import type { Reflector } from '@nestjs/core';
 import type { Observable } from 'rxjs';
+import type { Request } from 'express';
 
-export type AuthorityType<T> = T extends string ? string : number;
+export type Authority<T> = T extends string ? string : number;
 
-export abstract class BaseAuthGuard<Principal, AuthorityType> implements CanActivate {
+export abstract class BaseAuthGuard<Principal, Authority> implements CanActivate {
   private readonly map = new Map<number, ValueOf<typeof authguardMetadata>>();
   private readonly logger = new Logger(BaseAuthGuard.name);
 
   //! This order matters
-  constructor(private readonly reflector: Reflector) {
+  constructor(protected readonly reflector: Reflector) {
     this.map.set(0, authguardMetadata.PUBLIC);
     this.map.set(1, authguardMetadata.IS_AUTHENTICATED);
     this.map.set(2, authguardMetadata.REQUIRE_ALL);
@@ -19,9 +20,11 @@ export abstract class BaseAuthGuard<Principal, AuthorityType> implements CanActi
     this.map.set(4, authguardMetadata.NOT_WITH_AUTHORITY);
   }
 
+  protected abstract getRequest(context: ExecutionContext): Request;
+
   protected abstract getPrincipal(context: ExecutionContext): Principal | Nullish;
 
-  protected abstract getAuthorities(principal: Principal): AuthorityType[] | Nullish;
+  protected abstract getAuthorities(principal: Principal): Authority[] | Nullish;
 
   protected checker(type: ValueOf<typeof authguardMetadata>, authorities: unknown, context: ExecutionContext) {
     const principal = this.getPrincipal(context);
@@ -40,13 +43,13 @@ export abstract class BaseAuthGuard<Principal, AuthorityType> implements CanActi
         throw new UnauthorizedException();
 
       case authguardMetadata.REQUIRE_ALL:
-        return this.checkAuthorities(authorities as AuthorityType[], principal, true);
+        return this.checkAuthorities(authorities as Authority[], principal, true);
 
       case authguardMetadata.REQUIRE_ANY:
-        return this.checkAuthorities(authorities as AuthorityType[], principal);
+        return this.checkAuthorities(authorities as Authority[], principal);
 
       case authguardMetadata.NOT_WITH_AUTHORITY:
-        return !this.checkAuthorities(authorities as AuthorityType[], principal);
+        return !this.checkAuthorities(authorities as Authority[], principal);
 
       default:
         this.logger.error(`Unknown authguard type: ${type}`);
@@ -54,11 +57,7 @@ export abstract class BaseAuthGuard<Principal, AuthorityType> implements CanActi
     }
   }
 
-  protected checkAuthorities(
-    authorities: AuthorityType[],
-    principal?: Principal | Nullish,
-    mustHaveAll?: true
-  ): boolean {
+  protected checkAuthorities(authorities: Authority[], principal?: Principal | Nullish, mustHaveAll?: true): boolean {
     if (!principal) {
       this.logger.log('No principal found');
       throw new UnauthorizedException();
