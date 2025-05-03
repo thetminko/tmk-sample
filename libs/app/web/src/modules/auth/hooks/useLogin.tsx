@@ -1,13 +1,14 @@
 import { useAuthStore } from '../stores';
-import type { LoginReqDto, PrincipalDto } from '@app/shared';
+import { Authority, type LoginPayloadDto, type PrincipalDto } from '@app/shared';
 import { useMutation } from '@tanstack/react-query';
 import { loginMutationKey } from '../consts';
 
-async function loginUser(payload: LoginReqDto): Promise<PrincipalDto> {
+async function loginUser(payload: LoginPayloadDto): Promise<PrincipalDto> {
   //
   return {
     id: 1,
-    uuid: '1'
+    uuid: '1',
+    authorities: [Authority.RESOURCE_ACTION]
   };
 }
 

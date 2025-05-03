@@ -9,3 +9,10 @@ export const principalSchema = z.object({
 });
 
 export class PrincipalDto extends createZodDto(principalSchema) {}
+
+export const loginPayloadSchema = z.object({
+  username: z.string().min(1),
+  password: z.string().min(1)
+});
+
+export class LoginPayloadDto extends createZodDto(loginPayloadSchema) {}
