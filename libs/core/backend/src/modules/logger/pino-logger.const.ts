@@ -17,7 +17,7 @@ export const PinoLoggerConfig = ({ redact }: PinoLoggerConfigOptions): Params =>
     redact: [...(redact?.headers?.map(val => constructHeader(val)) ?? []), constructHeader('cookie')],
     genReqId: req => req.id ?? uuid(),
     level: process.env['NODE_ENV'] !== 'production' ? 'debug' : 'info',
-    customLogLevel: function (req, res, err) {
+    customLogLevel: function (_req, res, err) {
       if (res.statusCode >= 400 && res.statusCode < 500) {
         return 'warn';
       } else if (res.statusCode >= 500 || err) {

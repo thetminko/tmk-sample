@@ -8,6 +8,7 @@
       "scope:app",
       "type:web"
     ],
+    "sourceRoot": "apps/web/src",
     "targets": {
       "lint:fix": {
         "executor": "@nx/eslint:lint",

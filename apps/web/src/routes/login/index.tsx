@@ -1,4 +1,5 @@
 import { createFileRoute, redirect } from '@tanstack/react-router';
+import { useLogin } from '@app/web';
 
 export const Route = createFileRoute('/login/')({
   component: RouteComponent,
@@ -10,5 +11,11 @@ export const Route = createFileRoute('/login/')({
 });
 
 function RouteComponent() {
-  return <div>Login Page</div>;
+  const { mutate } = useLogin();
+
+  return (
+    <div>
+      Login Page <button onClick={() => mutate({ username: 'mock', password: 'mock' })}>Login</button>
+    </div>
+  );
 }

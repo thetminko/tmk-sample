@@ -15,6 +15,7 @@
     }
   },
   "nx": {
+    "sourceRoot": "libs/app/web/src",
     "targets": {
       "lint:fix": {
         "executor": "@nx/eslint:lint",
