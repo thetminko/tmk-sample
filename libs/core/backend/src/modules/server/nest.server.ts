@@ -4,8 +4,6 @@ import helmet from 'helmet';
 
 import { Logger as PinoLogger } from 'nestjs-pino';
 
-import { HttpExceptionFilter } from '../exception/index.js';
-
 type CreateNestAppOptions = {
   appModule: unknown;
   globalPrefix?: string;
@@ -57,8 +55,6 @@ export async function createNestApp(options: CreateNestAppOptions): Promise<Crea
   app.set('trust proxy', true);
 
   app.setGlobalPrefix(globalPrefix);
-
-  app.useGlobalFilters(new HttpExceptionFilter());
 
   return { app, globalPrefix };
 }
